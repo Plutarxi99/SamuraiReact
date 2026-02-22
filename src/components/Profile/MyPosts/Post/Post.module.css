@@ -1,0 +1,15 @@
+.item {
+    color: aliceblue;
+    font-size: 24px; /* Увеличит текст до 24 пикселей */
+
+}
+
+.item img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+}
+
+.like {
+    color: brown;
+}

@@ -1,0 +1,75 @@
+/* ─── Custom Properties ─────────────────────────────────────────────────────── */
+.nav {
+    --nav-bg-from:        #0f172a;
+    --nav-bg-to:          #1e1b4b;
+    --nav-text:           #94a3b8;
+    --nav-text-hover:     #e2e8f0;
+    --nav-text-active:    #ffffff;
+    --nav-item-hover-bg:  rgba(255, 255, 255, 0.06);
+    --nav-active-bg:      rgba(99, 102, 241, 0.18);
+    --nav-active-border:  #6366f1;
+    --nav-hover-border:   rgba(99, 102, 241, 0.4);
+    --nav-radius:         8px;
+    --nav-transition:     0.2s ease;
+    --nav-font-size:      0.95rem;
+    --nav-letter-spacing: 0.02em;
+    --nav-padding-block:  14px;
+    --nav-padding-inline: 16px;
+}
+
+/* ─── Layout ────────────────────────────────────────────────────────────────── */
+.nav {
+    grid-area: n;
+    background: linear-gradient(180deg, var(--nav-bg-from) 0%, var(--nav-bg-to) 100%);
+    padding-block: 24px;
+    padding-inline: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ─── Nav Item Container ────────────────────────────────────────────────────── */
+.item {
+    border-radius: var(--nav-radius);
+    overflow: hidden;
+}
+
+/* ─── Link Base ─────────────────────────────────────────────────────────────── */
+.item a {
+    display: block;
+    padding-block: var(--nav-padding-block);
+    padding-inline: var(--nav-padding-inline);
+    border-radius: var(--nav-radius);
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: var(--nav-font-size);
+    font-weight: 500;
+    letter-spacing: var(--nav-letter-spacing);
+    border-inline-start: 3px solid transparent;
+    background-color: transparent;
+    transition:
+        color            var(--nav-transition),
+        background-color var(--nav-transition),
+        border-color     var(--nav-transition);
+}
+
+/* ─── Hover State ───────────────────────────────────────────────────────────── */
+.item a:hover {
+    color: var(--nav-text-hover);
+    background-color: var(--nav-item-hover-bg);
+    border-inline-start-color: var(--nav-hover-border);
+}
+
+/* ─── Focus-Visible State ───────────────────────────────────────────────────── */
+.item a:focus-visible {
+    outline: 2px solid var(--nav-active-border);
+    outline-offset: 2px;
+}
+
+/* ─── Active State ──────────────────────────────────────────────────────────── */
+.item a.active {
+    color: var(--nav-text-active);
+    background-color: var(--nav-active-bg);
+    border-inline-start-color: var(--nav-active-border);
+    font-weight: 600;
+}
