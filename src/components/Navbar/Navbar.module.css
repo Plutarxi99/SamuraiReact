@@ -1,19 +1,19 @@
 /* ─── Custom Properties ─────────────────────────────────────────────────────── */
 .nav {
-    --nav-bg-from:        #0f172a;
-    --nav-bg-to:          #1e1b4b;
-    --nav-text:           #94a3b8;
-    --nav-text-hover:     #e2e8f0;
-    --nav-text-active:    #ffffff;
-    --nav-item-hover-bg:  rgba(255, 255, 255, 0.06);
-    --nav-active-bg:      rgba(99, 102, 241, 0.18);
-    --nav-active-border:  #6366f1;
-    --nav-hover-border:   rgba(99, 102, 241, 0.4);
-    --nav-radius:         8px;
-    --nav-transition:     0.2s ease;
-    --nav-font-size:      0.95rem;
+    --nav-bg-from: #0f172a;
+    --nav-bg-to: #1e1b4b;
+    --nav-text: #94a3b8;
+    --nav-text-hover: #e2e8f0;
+    --nav-text-active: #ffffff;
+    --nav-item-hover-bg: rgba(255, 255, 255, 0.06);
+    --nav-active-bg: rgba(99, 102, 241, 0.18);
+    --nav-active-border: #6366f1;
+    --nav-hover-border: rgba(99, 102, 241, 0.4);
+    --nav-radius: 8px;
+    --nav-transition: 0.2s ease;
+    --nav-font-size: 0.95rem;
     --nav-letter-spacing: 0.02em;
-    --nav-padding-block:  14px;
+    --nav-padding-block: 14px;
     --nav-padding-inline: 16px;
 }
 
@@ -47,10 +47,9 @@
     letter-spacing: var(--nav-letter-spacing);
     border-inline-start: 3px solid transparent;
     background-color: transparent;
-    transition:
-        color            var(--nav-transition),
-        background-color var(--nav-transition),
-        border-color     var(--nav-transition);
+    transition: color var(--nav-transition),
+    background-color var(--nav-transition),
+    border-color var(--nav-transition);
 }
 
 /* ─── Hover State ───────────────────────────────────────────────────────────── */
@@ -81,11 +80,12 @@
     border-block-start: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
 }
 
 .friendsLabel {
-    padding-inline: 4px;
+    padding-inline: 12px;
+    padding-block-end: 4px;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -94,50 +94,33 @@
     opacity: 0.6;
 }
 
-/* ─── Carousel row + arrows ─────────────────────────────────────────────────── */
-.friendsRow {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-
+/* ─── Friends Scrollable List ───────────────────────────────────────────────── */
 .friendsList {
     display: flex;
-    flex-direction: row;
-    gap: 4px;
-    overflow: hidden;
-    width: 116px; /* exactly 2 cards: 2×56px + 1×4px gap */
+    flex-direction: column;
+    gap: 2px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-inline-end: 2px;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.35) transparent;
 }
 
-.friendsArrow {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid rgba(99, 102, 241, 0.4);
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--nav-text);
-    font-size: 1.1rem;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background var(--nav-transition), color var(--nav-transition);
-    padding: 0;
+.friendsList::-webkit-scrollbar {
+    width: 4px;
 }
 
-.friendsArrow:not(:disabled):hover {
-    background: rgba(99, 102, 241, 0.25);
-    color: #ffffff;
+.friendsList::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.friendsArrow:focus-visible {
-    outline: 2px solid var(--nav-active-border);
-    outline-offset: 2px;
+.friendsList::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.35);
+    border-radius: 2px;
 }
 
-.friendsArrow:disabled {
-    opacity: 0.3;
-    cursor: default;
+.friendsList::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.6);
 }
