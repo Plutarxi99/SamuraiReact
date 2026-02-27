@@ -1,0 +1,11 @@
+.chat {
+    color: brown;
+    width: 100%;
+}
+
+.buttonSend {
+    margin: 20px;
+    width: 100px;
+    color: #6366f1;
+    padding: 20px;
+}

@@ -1,0 +1,8 @@
+.dialogsItems .dialog {
+    padding: 5px;
+    color: white;
+}
+
+.dialogsItems .active {
+    color: aqua;
+}
