@@ -3,7 +3,7 @@ import DialogUserItem from "../DialogUserItem/DialogUserItem";
 
 
 const DialogsUserList = (props ) => {
-    let dialogs = props.state.dialogs.map( d => <DialogUserItem name={d.name} id={d.id} />)
+    let dialogs = props.store.getState().dialogsPage.dialogs.map( d => <DialogUserItem name={d.name} id={d.id} />)
 
     return (
         <div className={s.dialogsItems}>

@@ -1,6 +1,6 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/state';
+import store from './redux/store';
 import ReactDOM from "react-dom/client";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
@@ -12,7 +12,7 @@ let rere = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App appState={state} dispatch={store.dispatch.bind(store)}/>
+                <App appState={state} dispatch={store.dispatch.bind(store)} store={store} />
             </BrowserRouter>
         </React.StrictMode>
     )

@@ -1,5 +1,11 @@
+import profileReducer from "./profile_reducer";
+import dialogsReducer from "./dialogs_reducer";
+import sidebarReducer from "./sidebar_reducer";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = "ADD-POST";
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
+const SEND_MESSAGE = "SEND-MESSAGE";
 
 let store = {
     _state: {
@@ -30,6 +36,7 @@ let store = {
                     {id: 9, name: "Igor"},
                     {id: 10, name: "Nina"},
                 ],
+            newMessageBody: ""
         },
         sidebar: {
             friends: [
@@ -103,19 +110,13 @@ let store = {
         this._callSubscriber(this._state);
     },
     dispatch(action) { // {type: 'ADD-POST'}
-        if (action.type === 'ADD-POST') {
-            this._addPost();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._updateNewPostText(action.newText);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._callSubscriber(this._state);
     }
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST})
-
-export const updateNewPostTextActionCreator = (text) =>
-    ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
 
 export default store;
 window.store = store;

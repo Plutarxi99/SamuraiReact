@@ -4,7 +4,7 @@ import Chat from "./Chat/Chat";
 
 
 const MessagesList = (props) => {
-    let messages = props.state.messages.map(m => (<MessageItem name={m.name}/>))
+    let messages = props.store.getState().dialogsPage.messages.map(m => (<MessageItem name={m.name}/>))
 
     return (
         <div>
@@ -12,7 +12,7 @@ const MessagesList = (props) => {
                 {messages}
             </div>
             <div>
-                <Chat/>
+                <Chat store={props.store}/>
             </div>
         </div>
     )
