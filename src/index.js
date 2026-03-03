@@ -1,6 +1,6 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import store from './redux/redux-store';
 import ReactDOM from "react-dom/client";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
@@ -20,7 +20,10 @@ let rere = (state) => {
 
 rere(store.getState())
 
-store.subscribe(rere)
+store.subscribe(() => {
+    let state = store.getState();
+    rere(state)
+})
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
