@@ -1,31 +1,27 @@
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
-import Friends from "./Friends/Friends";
 
 const Navbar = (props) => {
-    const navClass = ({ isActive }) => isActive ? s.active : '';
-    let friends = props.state.friends.map( f => <Friends key={f.id} id={f.id} name={f.name}/>)
-
     return <nav className={s.nav}>
         <div className={s.item}>
-            <NavLink to='/profile' className={navClass}>Profile</NavLink>
+            <NavLink to='/profile' className={props.navClass}>Profile</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/dialogs' className={navClass}>Messages</NavLink>
+            <NavLink to='/dialogs' className={props.navClass}>Messages</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/news' className={navClass}>News</NavLink>
+            <NavLink to='/news' className={props.navClass}>News</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/music' className={navClass}>Music</NavLink>
+            <NavLink to='/music' className={props.navClass}>Music</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/settings' className={navClass}>Settings</NavLink>
+            <NavLink to='/settings' className={props.navClass}>Settings</NavLink>
         </div>
         <div className={s.friendsSection}>
             <span className={s.friendsLabel}>Friends</span>
             <div className={s.friendsList}>
-                {friends}
+                {props.friends}
             </div>
         </div>
     </nav>

@@ -1,13 +1,12 @@
 import s from './Dialogs.module.css';
-import DialogsUserList from "./DialogsUserList/DialogsUserList";
-import MessagesList from "./MessagesList/MessagesList";
+import SuperDialogsUserList from "./DialogsUserList/DialogsUserListContainer";
+import SuperMessagesListContainer from "./MessagesList/MessagesListContainer";
 
-const Dialogs = (props) => {
-
+const Dialogs = () => {
     return (
         <div className={s.dialogs}>
-            <DialogsUserList store={props.store}/>
-            <MessagesList store={props.store}/>
+            <SuperDialogsUserList/>
+            <SuperMessagesListContainer/>
         </div>
     );
 }

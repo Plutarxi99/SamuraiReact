@@ -1,6 +1,5 @@
 import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile_reducer";
-import reportWebVitals from "../reportWebVitals";
 import dialogsReducer from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 
