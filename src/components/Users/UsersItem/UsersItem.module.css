@@ -111,11 +111,11 @@
     transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-/* ─── Follow Button ─────────────────────────────────────────────── */
+/* ─── Follow Button — Default (not followed) ────────────────────── */
 .btnFollow {
     background-color: #6366f1;
     color: #ffffff;
-    border: none;
+    border: 1px solid transparent;
 }
 
 .btnFollow:hover {
@@ -131,7 +131,18 @@
     outline-offset: 2px;
 }
 
-/* ─── Block Button ──────────────────────────────────────────────── */
+/* ─── Follow Button — Active modifier (is followed → "Unfollow") ── */
+.btnFollowActive {
+    background-color: transparent;
+    color: #6366f1;
+    border: 1px solid #6366f1;
+}
+
+.btnFollowActive:hover {
+    background-color: rgba(99, 102, 241, 0.08);
+}
+
+/* ─── Block Button — Default (not blocked) ──────────────────────── */
 .btnBlock {
     background-color: transparent;
     color: #94a3b8;
@@ -151,4 +162,16 @@
 .btnBlock:focus-visible {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
+}
+
+/* ─── Block Button — Active modifier (is blocked → "UnBlock") ───── */
+.btnBlockActive {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+.btnBlockActive:hover {
+    background-color: rgba(239, 68, 68, 0.25);
+    border-color: #ef4444;
 }
