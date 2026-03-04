@@ -1,3 +1,25 @@
+.messagesPanel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    background: #0f172a;
+}
+
 .messages {
-    padding: 10px;
+    flex: 1;
+    min-height: 0;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
+}
+
+.chatArea {
+    padding: 12px 16px;
+    border-block-start: 1px solid rgba(255, 255, 255, 0.08);
+    background: #1e293b;
 }

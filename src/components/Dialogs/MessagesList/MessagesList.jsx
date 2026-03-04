@@ -4,11 +4,11 @@ import SuperChat from "./Chat/ChatContainer";
 
 const MessagesList = (props) => {
     return (
-        <div>
+        <div className={s.messagesPanel}>
             <div className={s.messages}>
                 {props.messages}
             </div>
-            <div>
+            <div className={s.chatArea}>
                 <SuperChat/>
             </div>
         </div>

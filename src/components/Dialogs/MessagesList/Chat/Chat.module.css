@@ -1,11 +1,57 @@
+/* Layout */
 .chat {
-    color: brown;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
 }
 
-.buttonSend {
-    margin: 20px;
-    width: 100px;
-    color: #6366f1;
-    padding: 20px;
+/* Input */
+.textarea {
+    flex: 1;
+    box-sizing: border-box;
+    background: #243044;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    line-height: 1.5;
+    resize: none;
+    min-height: 44px;
+    outline: none;
+    transition: border-color 0.2s ease;
 }
+
+.textarea::placeholder {
+    color: #64748b;
+}
+
+.textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Button */
+.buttonSend {
+    flex-shrink: 0;
+    width: 100px;
+    height: 44px;
+    padding: 8px 16px;
+    margin: 0;
+    background: #6366f1;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+/* States */
+.buttonSend:hover { background: #4f46e5; }
+.buttonSend:active { transform: scale(0.97); }
+.buttonSend:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }

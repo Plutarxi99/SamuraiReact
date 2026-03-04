@@ -14,7 +14,7 @@ const Chat = (props) => {
 
     return (
         <div className={s.chat}>
-            <textarea value={props.newMessageBody} placeholder="Enter message" onChange={onNewMessageChange}></textarea>
+            <textarea className={s.textarea} value={props.newMessageBody} placeholder="Enter message" onChange={onNewMessageChange}></textarea>
             <button className={s.buttonSend} onClick={onSendMessageClick}>Send</button>
         </div>
     )

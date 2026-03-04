@@ -1,4 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 260px 1fr;
+    height: 100%;
+    align-items: stretch;
 }

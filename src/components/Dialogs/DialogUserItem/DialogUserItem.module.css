@@ -1,8 +1,36 @@
-.dialogsItems .dialog {
-    padding: 5px;
-    color: white;
+.dialog {
+    border-radius: 8px;
+    border-inline-start: 3px solid transparent;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.dialogsItems .active {
-    color: aqua;
+.dialog a {
+    display: block;
+    padding: 10px 12px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+.dialog:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-inline-start-color: rgba(99, 102, 241, 0.4);
+}
+
+.dialog:hover a {
+    color: #e2e8f0;
+}
+
+.active {
+    background: rgba(99, 102, 241, 0.18);
+    border-inline-start-color: #6366f1;
+}
+
+.active a {
+    color: #ffffff;
+    font-weight: 600;
 }

@@ -1,7 +1,67 @@
-.posts {
-    margin-top: 10px;
+.postsBlock {
+    padding: 24px;
+    max-width: 720px;
 }
 
-.postsBlock {
-    padding: 10px;
+.postsBlock h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0 0 16px 0;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 80px;
+    background: #243044;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.addButton {
+    margin-top: 8px;
+    padding: 8px 20px;
+    background: #6366f1;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.addButton:hover {
+    background: #4f46e5;
+}
+
+.addButton:active {
+    transform: scale(0.97);
+}
+
+.addButton:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+.posts {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
