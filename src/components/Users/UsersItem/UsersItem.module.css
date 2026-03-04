@@ -89,3 +89,61 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ─── Actions ───────────────────────────────────────────────────── */
+.actions {
+    margin-inline-start: auto;
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+}
+
+/* ─── Button Base ───────────────────────────────────────────────── */
+.btnFollow,
+.btnBlock {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
+}
+
+/* ─── Follow Button ─────────────────────────────────────────────── */
+.btnFollow {
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+.btnFollow:hover {
+    background-color: #16a34a;
+}
+
+.btnFollow:active {
+    transform: scale(0.96);
+}
+
+.btnFollow:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* ─── Block Button ──────────────────────────────────────────────── */
+.btnBlock {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.btnBlock:hover {
+    background-color: #dc2626;
+}
+
+.btnBlock:active {
+    transform: scale(0.96);
+}
+
+.btnBlock:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}

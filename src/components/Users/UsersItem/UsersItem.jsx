@@ -11,6 +11,10 @@ const UsersItem = ({ user }) => {
                 <span className={s.location}>{user.place_birthday}</span>
                 <span className={s.status}>{user.status_text}</span>
             </div>
+            <div className={s.actions}>
+                <button className={s.btnFollow}>Follow</button>
+                <button className={s.btnBlock}>Block</button>
+            </div>
         </div>
     );
 };
