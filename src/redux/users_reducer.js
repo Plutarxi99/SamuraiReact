@@ -46,7 +46,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(user =>
-                    user.id === action.user.id
+                    user.id === action.user_id
                         ? { ...user, followed: action.followed }  // создаём НОВЫЙ объект
                         : user  // остальные пользователи без изменений
                 ),
@@ -56,7 +56,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(user =>
-                    user.id === action.user.id
+                    user.id === action.user_id
                         ? { ...user, is_blocked: action.blocked }  // создаём НОВЫЙ объект
                         : user  // остальные пользователи без изменений
                 ),
@@ -68,7 +68,7 @@ const usersReducer = (state = initialState, action) => {
 };
 
 export const loadMoreUsersAC = (users) => ({type: LOAD_MORE_USERS, users});
-export const changedFollowOnUserAC = (user, followed) => ({type: CHANGED_FOLLOW_ON_USER, user, followed});
-export const changedBlockOnUserAC = (user, blocked) => ({type: CHANGED_BLOCK_ON_USER, user, blocked});
+export const changedFollowOnUserAC = (user_id, followed) => ({type: CHANGED_FOLLOW_ON_USER, user_id, followed});
+export const changedBlockOnUserAC = (user_id, blocked) => ({type: CHANGED_BLOCK_ON_USER, user_id, blocked});
 
 export default usersReducer;

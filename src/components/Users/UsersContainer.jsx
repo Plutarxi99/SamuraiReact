@@ -8,8 +8,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     loadMore: (users) => dispatch(loadMoreUsersAC(users)),
-    clickFollow: (user, followed) => dispatch(changedFollowOnUserAC(user, followed)),
-    clickBlock: (user, blocked) => dispatch(changedBlockOnUserAC(user, blocked))
+    clickFollow: (user_id, followed) => dispatch(changedFollowOnUserAC(user_id, followed)),
+    clickBlock: (user_id, blocked) => dispatch(changedBlockOnUserAC(user_id, blocked))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

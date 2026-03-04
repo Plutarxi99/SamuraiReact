@@ -1,16 +1,18 @@
 import s from './UsersItem.module.css';
+import clsx from 'clsx';
 
 const UsersItem = ({user, clickFollow, clickBlock}) => {
     const initial = user.full_name ? user.full_name.charAt(0).toUpperCase() : '?';
 
     const isFollowed = user.followed;
     const isBlocked = user.is_blocked;
-    let handleClickFollow = () => {
-        clickFollow(user, !isFollowed)
+
+    const handleClickFollow = () => {
+        clickFollow(user.id, !isFollowed)
     }
 
-    let handleClickBlock = () => {
-        clickBlock(user, !isBlocked)
+    const handleClickBlock = () => {
+        clickBlock(user.id, !isBlocked)
     }
 
     return (<div className={s.card}>
@@ -19,20 +21,20 @@ const UsersItem = ({user, clickFollow, clickBlock}) => {
                 <span className={s.name}>{user.full_name}</span>
                 <span className={s.location}>{user.place_birthday}</span>
                 <span className={s.status}>{user.status_text}</span>
-                <span className={s.status}>{user.location.country}, {user.location.city}</span>
+                <span className={s.status}>{user?.location?.country}, {user?.location?.city}</span>
             </div>
             <div className={s.actions}>
                 <button
                     onClick={handleClickFollow}
-                    className={`${s.btnFollow} ${isFollowed ? s.btnFollowActive : ''}`}
+                    className={clsx(s.btnFollow, isFollowed && s.btnFollowActive)}
                 >
                     {isFollowed ? 'Unfollow' : 'Follow'}
                 </button>
                 <button
                     onClick={handleClickBlock}
-                    className={`${s.btnBlock} ${isBlocked ? s.btnBlockActive : ''}`}
+                    className={clsx(s.btnBlock, isBlocked && s.btnBlockActive)}
                 >
-                    {isBlocked ? 'UnBlock' : 'Block'}
+                    {isBlocked ? 'Unblock' : 'Block'}
                 </button>
             </div>
         </div>);
