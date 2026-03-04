@@ -57,7 +57,7 @@
 .info {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     min-width: 0;
 }
 
@@ -73,9 +73,11 @@
 }
 
 .location {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -102,22 +104,22 @@
 .btnFollow,
 .btnBlock {
     padding: 6px 14px;
-    border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 /* ─── Follow Button ─────────────────────────────────────────────── */
 .btnFollow {
-    background-color: #22c55e;
+    background-color: #6366f1;
     color: #ffffff;
+    border: none;
 }
 
 .btnFollow:hover {
-    background-color: #16a34a;
+    background-color: #4f46e5;
 }
 
 .btnFollow:active {
@@ -131,12 +133,15 @@
 
 /* ─── Block Button ──────────────────────────────────────────────── */
 .btnBlock {
-    background-color: #ef4444;
-    color: #ffffff;
+    background-color: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .btnBlock:hover {
-    background-color: #dc2626;
+    background-color: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.4);
 }
 
 .btnBlock:active {
