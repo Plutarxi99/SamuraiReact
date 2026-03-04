@@ -1,0 +1,50 @@
+/* ─── Custom Properties ─────────────────────────────────────────── */
+.usersPage {
+    --page-padding: 24px;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --btn-text: #ffffff;
+    --radius: 8px;
+    --transition: 0.2s ease;
+}
+
+/* ─── Page Wrapper ──────────────────────────────────────────────── */
+.usersPage {
+    display: flex;
+    flex-direction: column;
+    padding: var(--page-padding);
+    background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+    min-height: 100%;
+}
+
+
+/* ─── Show More Button ──────────────────────────────────────────── */
+.loadMoreBtn {
+    margin-block-start: 16px;
+    padding: 10px 24px;
+    background-color: var(--accent);
+    color: var(--btn-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition:
+        background-color var(--transition),
+        transform var(--transition);
+}
+
+/* ─── Button States ─────────────────────────────────────────────── */
+.loadMoreBtn:hover {
+    background-color: var(--accent-hover);
+}
+
+.loadMoreBtn:active {
+    transform: scale(0.97);
+}
+
+.loadMoreBtn:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}

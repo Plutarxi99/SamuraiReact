@@ -1,0 +1,16 @@
+/* ─── Custom Properties ─────────────────────────────────────────── */
+.list {
+    --list-gap: 8px;
+    --list-max-width: 720px;
+}
+
+/* ─── List Container ────────────────────────────────────────────── */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--list-gap);
+    max-width: var(--list-max-width);
+    width: 100%;
+    padding-block: 8px;
+    padding-inline: 0;
+}
