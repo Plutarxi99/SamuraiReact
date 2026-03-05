@@ -1,7 +1,7 @@
 import s from './Users.module.css';
 import UsersList from "./UsersList/UsersList";
 
-const Users = ({users, loadMore, clickFollow, clickBlock}) => {
+const Users = ({users, loadMore, clickFollow, clickBlock, clickUnFollow, clickUnBlock}) => {
 
     const handleLoadMore = () => {
         const newUsers = [
@@ -12,7 +12,13 @@ const Users = ({users, loadMore, clickFollow, clickBlock}) => {
 
     return (
         <div className={s.usersPage}>
-            <UsersList users={users} clickFollow={clickFollow} clickBlock={clickBlock}/>
+            <UsersList
+                users={users}
+                clickFollow={clickFollow}
+                clickBlock={clickBlock}
+                clickUnFollow={clickUnFollow}
+                clickUnBlock={clickUnBlock}
+            />
             <button className={s.loadMoreBtn} onClick={handleLoadMore}>Show More</button>
         </div>
     );

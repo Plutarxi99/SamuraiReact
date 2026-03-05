@@ -1,6 +1,8 @@
 const LOAD_MORE_USERS = "LOAD_MORE_USERS";
 const CHANGED_FOLLOW_ON_USER = "CHANGED_FOLLOW_ON_USER";
+const CHANGED_UN_FOLLOW_ON_USER = "CHANGED_UN_FOLLOW_ON_USER";
 const CHANGED_BLOCK_ON_USER = "CHANGED_BLOCK_ON_USER";
+const CHANGED_UN_BLOCK_ON_USER = "CHANGED_UN_BLOCK_ON_USER";
 
 let initialState = {
     users: [
@@ -20,7 +22,7 @@ let initialState = {
             status_text: "Just vibing",
             followed: true,
             location: {city: 'Moskow', country: 'US'},
-            is_blocked: true,
+            is_blocked: false,
         },
         {
             id: 3,
@@ -47,8 +49,18 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user =>
                     user.id === action.user_id
-                        ? { ...user, followed: action.followed }  // создаём НОВЫЙ объект
-                        : user  // остальные пользователи без изменений
+                        ? { ...user, followed: true }
+                        : user
+                ),
+            };
+
+        case CHANGED_UN_FOLLOW_ON_USER:
+            return {
+                ...state,
+                users: state.users.map(user =>
+                    user.id === action.user_id
+                        ? { ...user, followed: false }
+                        : user
                 ),
             };
 
@@ -57,8 +69,18 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user =>
                     user.id === action.user_id
-                        ? { ...user, is_blocked: action.blocked }  // создаём НОВЫЙ объект
-                        : user  // остальные пользователи без изменений
+                        ? { ...user, is_blocked: true }
+                        : user
+                ),
+            }
+
+        case CHANGED_UN_BLOCK_ON_USER:
+            return {
+                ...state,
+                users: state.users.map(user =>
+                    user.id === action.user_id
+                        ? { ...user, is_blocked: false }
+                        : user
                 ),
             }
 
@@ -68,7 +90,9 @@ const usersReducer = (state = initialState, action) => {
 };
 
 export const loadMoreUsersAC = (users) => ({type: LOAD_MORE_USERS, users});
-export const changedFollowOnUserAC = (user_id, followed) => ({type: CHANGED_FOLLOW_ON_USER, user_id, followed});
-export const changedBlockOnUserAC = (user_id, blocked) => ({type: CHANGED_BLOCK_ON_USER, user_id, blocked});
+export const FollowOnUserAC = (user_id) => ({type: CHANGED_FOLLOW_ON_USER, user_id});
+export const UnFollowOnUserAC = (user_id) => ({type: CHANGED_UN_FOLLOW_ON_USER, user_id});
+export const BlockOnUserAC = (user_id) => ({type: CHANGED_BLOCK_ON_USER, user_id});
+export const UnBlockOnUserAC = (user_id) => ({type: CHANGED_UN_BLOCK_ON_USER, user_id});
 
 export default usersReducer;

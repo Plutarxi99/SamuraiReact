@@ -1,18 +1,26 @@
 import s from './UsersItem.module.css';
 import clsx from 'clsx';
 
-const UsersItem = ({user, clickFollow, clickBlock}) => {
+const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock }) => {
     const initial = user.full_name ? user.full_name.charAt(0).toUpperCase() : '?';
 
     const isFollowed = user.followed;
     const isBlocked = user.is_blocked;
 
     const handleClickFollow = () => {
-        clickFollow(user.id, !isFollowed)
+        clickFollow(user.id)
     }
 
     const handleClickBlock = () => {
-        clickBlock(user.id, !isBlocked)
+        clickBlock(user.id)
+    }
+
+    const handleClickUnFollow = () => {
+        clickUnFollow(user.id)
+    }
+
+    const handleClickUnBlock = () => {
+        clickUnBlock(user.id)
     }
 
     return (<div className={s.card}>
@@ -25,13 +33,13 @@ const UsersItem = ({user, clickFollow, clickBlock}) => {
             </div>
             <div className={s.actions}>
                 <button
-                    onClick={handleClickFollow}
+                    onClick={isFollowed ? handleClickUnFollow : handleClickFollow}
                     className={clsx(s.btnFollow, isFollowed && s.btnFollowActive)}
                 >
                     {isFollowed ? 'Unfollow' : 'Follow'}
                 </button>
                 <button
-                    onClick={handleClickBlock}
+                    onClick={isBlocked ? handleClickUnBlock : handleClickBlock}
                     className={clsx(s.btnBlock, isBlocked && s.btnBlockActive)}
                 >
                     {isBlocked ? 'Unblock' : 'Block'}
