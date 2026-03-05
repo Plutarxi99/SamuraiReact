@@ -1,8 +1,8 @@
 const LOAD_MORE_USERS = "LOAD_MORE_USERS";
-const CHANGED_FOLLOW_ON_USER = "CHANGED_FOLLOW_ON_USER";
-const CHANGED_UN_FOLLOW_ON_USER = "CHANGED_UN_FOLLOW_ON_USER";
-const CHANGED_BLOCK_ON_USER = "CHANGED_BLOCK_ON_USER";
-const CHANGED_UN_BLOCK_ON_USER = "CHANGED_UN_BLOCK_ON_USER";
+const FOLLOW_ON_USER = "FOLLOW_ON_USER";
+const UN_FOLLOW_ON_USER = "UN_FOLLOW_ON_USER";
+const BLOCK_ON_USER = "BLOCK_ON_USER";
+const UN_BLOCK_ON_USER = "UN_BLOCK_ON_USER";
 
 let initialState = {
     users: [
@@ -44,43 +44,52 @@ const usersReducer = (state = initialState, action) => {
                 users: [...state.users, ...action.users],
             };
 
-        case CHANGED_FOLLOW_ON_USER:
+        case FOLLOW_ON_USER:
             return {
                 ...state,
-                users: state.users.map(user =>
-                    user.id === action.user_id
-                        ? { ...user, followed: true }
-                        : user
-                ),
-            };
-
-        case CHANGED_UN_FOLLOW_ON_USER:
-            return {
-                ...state,
-                users: state.users.map(user =>
-                    user.id === action.user_id
-                        ? { ...user, followed: false }
-                        : user
-                ),
-            };
-
-        case CHANGED_BLOCK_ON_USER:
-            return {
-                ...state,
-                users: state.users.map(user =>
-                    user.id === action.user_id
-                        ? { ...user, is_blocked: true }
-                        : user
+                users: state.users.map(user => {
+                        if (user.id === action.user_id) {
+                            return {user, followed: true}
+                        }
+                        return user
+                    }
                 ),
             }
 
-        case CHANGED_UN_BLOCK_ON_USER:
+
+        case UN_FOLLOW_ON_USER:
             return {
                 ...state,
-                users: state.users.map(user =>
-                    user.id === action.user_id
-                        ? { ...user, is_blocked: false }
-                        : user
+                users: state.users.map(user => {
+                        if (user.id === action.user_id) {
+                            return {user, followed: false}
+                        }
+                        return user
+                    }
+                ),
+            }
+
+        case BLOCK_ON_USER:
+            return {
+                ...state,
+                users: state.users.map(user => {
+                        if (user.id === action.user_id) {
+                            return {user, is_blocked: true}
+                        }
+                        return user
+                    }
+                ),
+            }
+
+        case UN_BLOCK_ON_USER:
+            return {
+                ...state,
+                users: state.users.map(user => {
+                        if (user.id === action.user_id) {
+                            return {user, is_blocked: false}
+                        }
+                        return user
+                    }
                 ),
             }
 
@@ -90,9 +99,9 @@ const usersReducer = (state = initialState, action) => {
 };
 
 export const loadMoreUsersAC = (users) => ({type: LOAD_MORE_USERS, users});
-export const FollowOnUserAC = (user_id) => ({type: CHANGED_FOLLOW_ON_USER, user_id});
-export const UnFollowOnUserAC = (user_id) => ({type: CHANGED_UN_FOLLOW_ON_USER, user_id});
-export const BlockOnUserAC = (user_id) => ({type: CHANGED_BLOCK_ON_USER, user_id});
-export const UnBlockOnUserAC = (user_id) => ({type: CHANGED_UN_BLOCK_ON_USER, user_id});
+export const FollowOnUserAC = (user_id) => ({type: FOLLOW_ON_USER, user_id});
+export const UnFollowOnUserAC = (user_id) => ({type: UN_FOLLOW_ON_USER, user_id});
+export const BlockOnUserAC = (user_id) => ({type: BLOCK_ON_USER, user_id});
+export const UnBlockOnUserAC = (user_id) => ({type: UN_BLOCK_ON_USER, user_id});
 
 export default usersReducer;
