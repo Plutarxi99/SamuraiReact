@@ -15,3 +15,8 @@
     padding-inline: 0;
     margin-inline: auto;
 }
+
+.selectedPages {
+    color: #e2e8f0;
+    padding: 10px;
+}

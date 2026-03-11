@@ -10,13 +10,14 @@ import {Provider} from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <React.StrictMode>
+    // todo дважды вызывается запрос user
+    // <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
                 <App/>
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>
+    // </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function
