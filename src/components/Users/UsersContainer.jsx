@@ -4,7 +4,7 @@ import {
     BlockOnUserAC,
     FollowOnUserAC,
     loadMoreUsersAC,
-    SetCurrentPageAC,
+    SetCurrentPageAC, setIsFetchingAC,
     SetTotalUserCountAC,
     UnBlockOnUserAC,
     UnFollowOnUserAC
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => ({
     pageSize: state.users.pageSize,
     totalUserCount: state.users.totalUserCount,
     currentPage: state.users.currentPage,
+    isFetching: state.users.isFetching,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
     clickUnBlock: (user_id) => dispatch(UnBlockOnUserAC(user_id)),
     setCurrentPage: (currentPage) => dispatch(SetCurrentPageAC(currentPage)),
     setTotalUserCount: (totalUser) => dispatch(SetTotalUserCountAC(totalUser)),
+    setToggleIsFetching: (isFetching) => dispatch(setIsFetchingAC(isFetching)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);

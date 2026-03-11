@@ -5,12 +5,14 @@ const BLOCK_ON_USER = "BLOCK_ON_USER";
 const UN_BLOCK_ON_USER = "UN_BLOCK_ON_USER";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USER_COUNT = "SET_TOTAL_USER_COUNT";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 let initialState = {
     users: [ ],
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 1,
+    isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -82,6 +84,11 @@ const usersReducer = (state = initialState, action) => {
                 totalUserCount: action.totalUser,
             }
 
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
         default:
             return state;
     }
@@ -94,5 +101,6 @@ export const BlockOnUserAC = (user_id) => ({type: BLOCK_ON_USER, user_id});
 export const UnBlockOnUserAC = (user_id) => ({type: UN_BLOCK_ON_USER, user_id});
 export const SetCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const SetTotalUserCountAC = (totalUser) => ({type: SET_TOTAL_USER_COUNT, totalUser});
+export const setIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default usersReducer;

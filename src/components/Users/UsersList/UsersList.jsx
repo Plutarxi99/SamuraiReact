@@ -9,6 +9,7 @@ const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickU
     }
 
     let onPageChanged = (p) => {
+        props.setToggleIsFetching(true)
         props.setCurrentPage(p)
         getUsers();
     }
