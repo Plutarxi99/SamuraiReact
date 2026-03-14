@@ -1,27 +1,70 @@
 import s from './UsersList.module.css';
 import UsersItem from "../UsersItem/UsersItem";
 
-const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickUnBlock, getUsers}) => {
-    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+const buildPageRange = (current, total) => {
+    const set = new Set();
+
+    // Always include first two and last two pages
+    [1, 2, total - 1, total].forEach(p => {
+        if (p >= 1 && p <= total) set.add(p);
+    });
+
+    // Include window around current page
+    for (let p = current - 2; p <= current + 2; p++) {
+        if (p >= 1 && p <= total) set.add(p);
     }
 
+    const sorted = Array.from(set).sort((a, b) => a - b);
+    const result = [];
+
+    for (let i = 0; i < sorted.length; i++) {
+        if (i > 0 && sorted[i] - sorted[i - 1] > 1) {
+            result.push('...');
+        }
+        result.push(sorted[i]);
+    }
+
+    return result;
+};
+
+const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickUnBlock, getUsers}) => {
+    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
+
     let onPageChanged = (p) => {
-        props.setToggleIsFetching(true)
-        props.setCurrentPage(p)
-        getUsers();
+        props.setToggleIsFetching(true);
+        props.setCurrentPage(p);
+        getUsers(p);
     }
 
     return (
         <div>
-            <div className={s.selectedPages}>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p && s.selectedPages }
-                                 onClick={() => onPageChanged(p)}
-                    >{p}</span>
-                })}
+            <div className={s.pagination}>
+                <button
+                    className={s.pageBtnNav}
+                    onClick={() => onPageChanged(props.currentPage - 1)}
+                    disabled={props.currentPage === 1}
+                    aria-label="Previous page"
+                >‹</button>
+
+                {buildPageRange(props.currentPage, pagesCount).map((p, idx) =>
+                    p === '...'
+                        ? <span key={`ellipsis-${idx}`} className={s.ellipsis}>…</span>
+                        : <button
+                            key={p}
+                            className={props.currentPage === p ? `${s.pageBtn} ${s.pageBtnActive}` : s.pageBtn}
+                            onClick={() => props.currentPage !== p && onPageChanged(p)}
+                            disabled={props.currentPage === p}
+                        >
+                            {p}
+                        </button>
+                )}
+
+                <button
+                    className={s.pageBtnNav}
+                    onClick={() => onPageChanged(props.currentPage + 1)}
+                    disabled={props.currentPage === pagesCount}
+                    aria-label="Next page"
+                >›</button>
             </div>
             <div className={s.list}>
                 {users.map(u => <UsersItem
