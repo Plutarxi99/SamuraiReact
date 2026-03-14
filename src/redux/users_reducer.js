@@ -94,13 +94,13 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const loadMoreUsersAC = (users) => ({type: LOAD_MORE_USERS, users});
-export const FollowOnUserAC = (user_id) => ({type: FOLLOW_ON_USER, user_id});
-export const UnFollowOnUserAC = (user_id) => ({type: UN_FOLLOW_ON_USER, user_id});
-export const BlockOnUserAC = (user_id) => ({type: BLOCK_ON_USER, user_id});
-export const UnBlockOnUserAC = (user_id) => ({type: UN_BLOCK_ON_USER, user_id});
-export const SetCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const SetTotalUserCountAC = (totalUser) => ({type: SET_TOTAL_USER_COUNT, totalUser});
-export const setIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const loadMore = (users) => ({type: LOAD_MORE_USERS, users});
+export const clickFollow = (user_id) => ({type: FOLLOW_ON_USER, user_id});
+export const clickUnFollow = (user_id) => ({type: UN_FOLLOW_ON_USER, user_id});
+export const clickBlock = (user_id) => ({type: BLOCK_ON_USER, user_id});
+export const clickUnBlock = (user_id) => ({type: UN_BLOCK_ON_USER, user_id});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUserCount = (totalUser) => ({type: SET_TOTAL_USER_COUNT, totalUser});
+export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default usersReducer;

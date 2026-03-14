@@ -4,7 +4,7 @@ import s from "./Users.module.css";
 import UsersList from "./UsersList/UsersList";
 import Preloader from "../common/Preloader/Preloader";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NzI3MzI3NjMsImV4cCI6MTc3MzMzNzU2M30.DqFcOA-nEz0hbaV-q02N2ER8QzNoPYwwuST9z9jFQ8E";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NzMzODkxODYsImV4cCI6MTc3Mzk5Mzk4Nn0.7mDId2pgM6H9jw154PJLx123SQPc_8zmco4ihw6gUwo";
 
 class UsersAPIComponent extends Component {
     handleLoadMore() {
