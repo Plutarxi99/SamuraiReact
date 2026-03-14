@@ -6,7 +6,7 @@ import s from './Profile.module.css'
 const Profile = (props) => {
     return (
         <div className={s.profilePage}>
-            <ProfileInfo/>
+            <ProfileInfo user={props.user} photoUrl={props.photoUrl} />
             <SuperMyPostsContainer />
         </div>
     )

@@ -1,7 +1,8 @@
 import s from './UsersItem.module.css';
 import clsx from 'clsx';
+import {NavLink} from "react-router-dom";
 
-const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock }) => {
+const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock}) => {
     const initial = user.full_name ? user.full_name.charAt(0).toUpperCase() : '?';
 
     const isFollowed = user.followed;
@@ -23,8 +24,11 @@ const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock }
         clickUnBlock(user.id)
     }
 
-    return (<div className={s.card}>
-            <div className={s.avatar}>{initial}</div>
+    return (
+        <div className={s.card}>
+            <NavLink to={'/profile/' + user.id}>
+                <div className={s.avatar}>{initial}</div>
+            </NavLink>
             <div className={s.info}>
                 <span className={s.name}>{user.full_name}</span>
                 <span className={s.location}>{user.place_birthday}</span>
@@ -45,7 +49,8 @@ const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock }
                     {isBlocked ? 'Unblock' : 'Block'}
                 </button>
             </div>
-        </div>);
+        </div>
+    );
 };
 
 export default UsersItem;
