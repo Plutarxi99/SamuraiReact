@@ -1,6 +1,6 @@
 import s from './UsersList.module.css';
 import UsersItem from "../UsersItem/UsersItem";
-import {toggleFollowingProgress} from "../../../redux/users_reducer";
+import {unfollowUserThunk} from "../../../redux/users_reducer";
 
 const buildPageRange = (current, total) => {
     const set = new Set();
@@ -28,14 +28,19 @@ const buildPageRange = (current, total) => {
     return result;
 };
 
-const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickUnBlock, getUsers, toggleFollowingProgress, followingIsProgress}) => {
+const UsersList = ({
+                       props,
+                       users,
+                       clickFollow,
+                       clickBlock,
+                       clickUnFollow,
+                       clickUnBlock,
+                       onPageChanged,
+                       toggleFollowingProgress,
+                       followUserThunk,
+                       unfollowUserThunk
+                   }) => {
     let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
-
-    let onPageChanged = (p) => {
-        props.setToggleIsFetching(true);
-        props.setCurrentPage(p);
-        getUsers(p);
-    }
 
     return (
         <div>
@@ -45,7 +50,8 @@ const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickU
                     onClick={() => onPageChanged(props.currentPage - 1)}
                     disabled={props.currentPage === 1}
                     aria-label="Previous page"
-                >‹</button>
+                >‹
+                </button>
 
                 {buildPageRange(props.currentPage, pagesCount).map((p, idx) =>
                     p === '...'
@@ -65,7 +71,8 @@ const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickU
                     onClick={() => onPageChanged(props.currentPage + 1)}
                     disabled={props.currentPage === pagesCount}
                     aria-label="Next page"
-                >›</button>
+                >›
+                </button>
             </div>
             <div className={s.list}>
                 {users.map(u => <UsersItem
@@ -77,6 +84,8 @@ const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickU
                     clickUnBlock={clickUnBlock}
                     toggleFollowingProgress={toggleFollowingProgress}
                     followingIsProgress={props.followingIsProgress}
+                    followUserThunk={followUserThunk}
+                    unfollowUserThunk={unfollowUserThunk}
                 />)}
             </div>
         </div>

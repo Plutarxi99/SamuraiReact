@@ -2,24 +2,17 @@ import {Component} from "react";
 import s from "./Users.module.css";
 import UsersList from "./UsersList/UsersList";
 import Preloader from "../common/Preloader/Preloader";
-import {userAPI} from "../../api/usersAPI";
 
 class UsersAPIComponent extends Component {
     componentDidMount() {
-        this.props.setToggleIsFetching(true);
-        this.getUsers();
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsersThunk({page: currentPage, pageSize});
     }
 
-    getUsers(page = this.props.currentPage) {
-        userAPI.getUsers(page, this.props.pageSize)
-            .then((response) => {
-                this.props.setToggleIsFetching(false);
-                this.props.loadMore(response.data.items);
-                this.props.setTotalUserCount(response.data.totalCount);
-            })
-            .catch((error) => {
-                console.error("Ошибка запроса:", error);
-            });
+    onPageChanged = (p) => {
+        const {pageSize} = this.props;
+        this.props.setCurrentPage(p);
+        this.props.getUsersThunk({page: p, pageSize});
     }
 
     render() {
@@ -35,8 +28,10 @@ class UsersAPIComponent extends Component {
                         clickBlock={clickBlock}
                         clickUnFollow={clickUnFollow}
                         clickUnBlock={clickUnBlock}
-                        getUsers={this.getUsers.bind(this)}
+                        onPageChanged={this.onPageChanged}
                         toggleFollowingProgress={this.props.toggleFollowingProgress}
+                        followUserThunk={this.props.followUserThunk}
+                        unfollowUserThunk={this.props.unfollowUserThunk}
                     />
                 </div>
             </>

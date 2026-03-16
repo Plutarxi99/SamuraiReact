@@ -1,3 +1,6 @@
+import {userAPI as userApi, userAPI as usersAPI, userAPI} from "../api/usersAPI";
+import {createAsyncThunk} from "@reduxjs/toolkit";
+
 const LOAD_MORE_USERS = "LOAD_MORE_USERS";
 const FOLLOW_ON_USER = "FOLLOW_ON_USER";
 const UN_FOLLOW_ON_USER = "UN_FOLLOW_ON_USER";
@@ -9,7 +12,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 let initialState = {
-    users: [ ],
+    users: [],
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 1,
@@ -96,7 +99,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingIsProgress: action.isProgress ?
                     [...state.followingIsProgress, action.userId]
-                : [...state.followingIsProgress.filter(id => id !== action.userId)],
+                    : [...state.followingIsProgress.filter(id => id !== action.userId)],
             }
 
         default:
@@ -112,6 +115,55 @@ export const clickUnBlock = (user_id) => ({type: UN_BLOCK_ON_USER, user_id});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUserCount = (totalUser) => ({type: SET_TOTAL_USER_COUNT, totalUser});
 export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleFollowingProgress = (isProgress, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isProgress , userId});
+export const toggleFollowingProgress = (isProgress, userId) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isProgress,
+    userId
+});
+
+export const getUsersThunk = createAsyncThunk(
+    'users/getUsers',
+    async ({page, pageSize}, {dispatch}) => {
+        dispatch(setToggleIsFetching(true));
+        try {
+            const response = await usersAPI.getUsers(page, pageSize);
+            dispatch(loadMore(response.data.items));
+            dispatch(setTotalUserCount(response.data.totalCount));
+        } finally {
+            dispatch(setToggleIsFetching(false));
+        }
+    }
+);
+
+export const followUserThunk = createAsyncThunk(
+    'users/follow',
+    async (userId, {dispatch}) => {
+        dispatch(toggleFollowingProgress(true, userId));
+        try {
+            await usersAPI.followOnUser(userId);
+            dispatch(clickFollow(userId));
+        } catch (e) {
+            console.error("Follow failed:", e);
+        } finally {
+            dispatch(toggleFollowingProgress(false, userId));
+        }
+    }
+);
+
+export const unfollowUserThunk = createAsyncThunk(
+    'users/unfollow',
+    async (userId, {dispatch}) => {
+        dispatch(toggleFollowingProgress(true, userId));
+        try {
+            await usersAPI.unFollowOnUser(userId);
+            dispatch(clickUnFollow(userId));
+        } catch (e) {
+            console.error("Unfollow failed:", e);
+        } finally {
+            dispatch(toggleFollowingProgress(false, userId));
+        }
+    }
+);
+
 
 export default usersReducer;
