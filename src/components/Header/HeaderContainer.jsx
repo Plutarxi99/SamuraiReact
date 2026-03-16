@@ -1,17 +1,13 @@
 import {Component} from "react";
 import Header from "./Header";
-import axios from "axios";
 import {setUserData} from "../../redux/auth_reducer";
 import {connect} from "react-redux";
+import {authAPI} from "../../api/authAPI";
 
 class HeaderContainer extends Component {
 
     componentDidMount() {
-        axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
-            headers: {
-                "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
-            }
-        })
+            authAPI.me()
             .then((response) => {
                 if (response.status === 200) {
                     let data = response.data;

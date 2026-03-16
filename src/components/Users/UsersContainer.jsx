@@ -3,7 +3,7 @@ import UsersAPIComponent from "./UsersAPIComponent";
 import {
     clickBlock,
     clickFollow, clickUnBlock, clickUnFollow,
-    loadMore, setCurrentPage, setToggleIsFetching, setTotalUserCount
+    loadMore, setCurrentPage, setToggleIsFetching, setTotalUserCount, toggleFollowingProgress
 } from "../../redux/users_reducer";
 
 const mapStateToProps = (state) => ({
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
     totalUserCount: state.users.totalUserCount,
     currentPage: state.users.currentPage,
     isFetching: state.users.isFetching,
+    followingIsProgress: state.users.followingIsProgress,
 });
 
 export default connect(
@@ -24,6 +25,7 @@ export default connect(
         clickUnBlock,
         setCurrentPage,
         setTotalUserCount,
-        setToggleIsFetching
+        setToggleIsFetching,
+        toggleFollowingProgress
     }
 )(UsersAPIComponent);

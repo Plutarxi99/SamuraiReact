@@ -6,6 +6,7 @@ const UN_BLOCK_ON_USER = "UN_BLOCK_ON_USER";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USER_COUNT = "SET_TOTAL_USER_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 let initialState = {
     users: [ ],
@@ -13,6 +14,7 @@ let initialState = {
     totalUserCount: 0,
     currentPage: 1,
     isFetching: false,
+    followingIsProgress: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -89,6 +91,14 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching,
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingIsProgress: action.isProgress ?
+                    [...state.followingIsProgress, action.userId]
+                : [...state.followingIsProgress.filter(id => id !== action.userId)],
+            }
+
         default:
             return state;
     }
@@ -102,5 +112,6 @@ export const clickUnBlock = (user_id) => ({type: UN_BLOCK_ON_USER, user_id});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUserCount = (totalUser) => ({type: SET_TOTAL_USER_COUNT, totalUser});
 export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleFollowingProgress = (isProgress, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isProgress , userId});
 
 export default usersReducer;

@@ -1,15 +1,28 @@
 import s from './UsersItem.module.css';
 import clsx from 'clsx';
 import {NavLink} from "react-router-dom";
+import {userAPI as userApi} from "../../../api/usersAPI";
 
-const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock}) => {
+const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock, toggleFollowingProgress, followingIsProgress}) => {
     const initial = user.full_name ? user.full_name.charAt(0).toUpperCase() : '?';
 
     const isFollowed = user.followed;
     const isBlocked = user.is_blocked;
 
     const handleClickFollow = () => {
-        clickFollow(user.id)
+        toggleFollowingProgress(true, user.id)
+        userApi.followOnUser(user.id)
+            .then((response) => {
+                console.log(response.data);
+                if (response.status === 201) {
+                    clickFollow(user.id)
+                }
+                console.log(response.status);
+                toggleFollowingProgress(false, user.id)
+            })
+            .catch((error) => {
+                console.error("Ошибка запроса:", error);
+            });
     }
 
     const handleClickBlock = () => {
@@ -17,13 +30,25 @@ const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock})
     }
 
     const handleClickUnFollow = () => {
-        clickUnFollow(user.id)
+        toggleFollowingProgress(true, user.id)
+        userApi.unFollowOnUser(user.id)
+            .then((response) => {
+                console.log(response.data);
+                if (response.status === 200) {
+                    clickUnFollow(user.id)
+                }
+                console.log(response.status);
+                toggleFollowingProgress(false, user.id)
+            })
+            .catch((error) => {
+                console.error("Ошибка запроса:", error);
+            });
     }
 
     const handleClickUnBlock = () => {
         clickUnBlock(user.id)
     }
-
+    let a = followingIsProgress.some(id => id === user.id)
     return (
         <div className={s.card}>
             <NavLink to={'/profile/' + user.id}>
@@ -37,12 +62,14 @@ const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock})
             </div>
             <div className={s.actions}>
                 <button
+                    disabled={a}
                     onClick={isFollowed ? handleClickUnFollow : handleClickFollow}
                     className={clsx(s.btnFollow, isFollowed && s.btnFollowActive)}
                 >
                     {isFollowed ? 'Unfollow' : 'Follow'}
                 </button>
                 <button
+                    disabled={a}
                     onClick={isBlocked ? handleClickUnBlock : handleClickBlock}
                     className={clsx(s.btnBlock, isBlocked && s.btnBlockActive)}
                 >

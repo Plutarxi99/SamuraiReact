@@ -1,8 +1,8 @@
 import {Component} from "react";
-import axios from "axios";
 import s from "./Users.module.css";
 import UsersList from "./UsersList/UsersList";
 import Preloader from "../common/Preloader/Preloader";
+import {userAPI} from "../../api/usersAPI";
 
 class UsersAPIComponent extends Component {
     componentDidMount() {
@@ -11,11 +11,7 @@ class UsersAPIComponent extends Component {
     }
 
     getUsers(page = this.props.currentPage) {
-        axios.get(`${process.env.REACT_APP_API_URL}/users?page=${page}&limit=${this.props.pageSize}`, {
-            headers: {
-                "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
-            }
-        })
+        userAPI.getUsers(page, this.props.pageSize)
             .then((response) => {
                 this.props.setToggleIsFetching(false);
                 this.props.loadMore(response.data.items);
@@ -40,6 +36,7 @@ class UsersAPIComponent extends Component {
                         clickUnFollow={clickUnFollow}
                         clickUnBlock={clickUnBlock}
                         getUsers={this.getUsers.bind(this)}
+                        toggleFollowingProgress={this.props.toggleFollowingProgress}
                     />
                 </div>
             </>

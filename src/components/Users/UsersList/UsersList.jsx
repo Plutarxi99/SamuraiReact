@@ -1,5 +1,6 @@
 import s from './UsersList.module.css';
 import UsersItem from "../UsersItem/UsersItem";
+import {toggleFollowingProgress} from "../../../redux/users_reducer";
 
 const buildPageRange = (current, total) => {
     const set = new Set();
@@ -27,7 +28,7 @@ const buildPageRange = (current, total) => {
     return result;
 };
 
-const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickUnBlock, getUsers}) => {
+const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickUnBlock, getUsers, toggleFollowingProgress, followingIsProgress}) => {
     let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
 
     let onPageChanged = (p) => {
@@ -74,6 +75,8 @@ const UsersList = ({props, users, clickFollow, clickBlock, clickUnFollow, clickU
                     clickBlock={clickBlock}
                     clickUnFollow={clickUnFollow}
                     clickUnBlock={clickUnBlock}
+                    toggleFollowingProgress={toggleFollowingProgress}
+                    followingIsProgress={props.followingIsProgress}
                 />)}
             </div>
         </div>
