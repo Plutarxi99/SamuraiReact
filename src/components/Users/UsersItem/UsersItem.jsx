@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import {NavLink} from "react-router-dom";
 import {userAPI as userApi} from "../../../api/usersAPI";
 
-const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock, toggleFollowingProgress, followingIsProgress}) => {
+const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock, toggleFollowingProgress, followingIsProgress, followUserThunk, unfollowUserThunk}) => {
     const initial = user.full_name ? user.full_name.charAt(0).toUpperCase() : '?';
 
     const isFollowed = user.followed;
@@ -63,7 +63,7 @@ const UsersItem = ({user, clickFollow, clickBlock, clickUnFollow, clickUnBlock, 
             <div className={s.actions}>
                 <button
                     disabled={a}
-                    onClick={isFollowed ? handleClickUnFollow : handleClickFollow}
+                    onClick={() => isFollowed ? unfollowUserThunk(user.id) : followUserThunk(user.id)}
                     className={clsx(s.btnFollow, isFollowed && s.btnFollowActive)}
                 >
                     {isFollowed ? 'Unfollow' : 'Follow'}
