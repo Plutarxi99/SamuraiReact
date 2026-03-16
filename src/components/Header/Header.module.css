@@ -13,3 +13,8 @@
     border-radius: 6px;
     object-fit: cover;
 }
+
+.loginBlock {
+    display: flex;
+
+}
