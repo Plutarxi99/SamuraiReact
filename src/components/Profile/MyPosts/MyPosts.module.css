@@ -1,9 +1,19 @@
 .postsBlock {
-    padding: 24px;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 0 24px;
     max-width: 720px;
 }
 
-.postsBlock h3 {
+/* Composer — fixed above the scrollable list */
+.composer {
+    flex-shrink: 0;
+    padding-bottom: 16px;
+}
+
+.composer h3 {
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: 600;
@@ -60,8 +70,26 @@
 }
 
 .posts {
-    margin-top: 16px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-bottom: 24px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
+}
+
+.posts::-webkit-scrollbar {
+    width: 4px;
+}
+
+.posts::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.posts::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 4px;
 }

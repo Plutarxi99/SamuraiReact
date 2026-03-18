@@ -1,5 +1,6 @@
 /* Root wrapper */
 .profileInfo {
+    flex-shrink: 0;
     background: #1e293b;
     border-radius: 12px;
     overflow: hidden;

@@ -20,11 +20,11 @@ const MyPosts = (props) => {
 
     return (
         <div className={s.postsBlock}>
-            <h3>My post</h3>
-            <div>
+            <div className={s.composer}>
+                <h3>My post</h3>
                 <div>
-                    <textarea className={s.textarea} ref={newPostElement} onChange={onPostChange}
-                              value={props.newPostText}></textarea>
+                    <textarea className={s.textarea} ref={newPostElement}
+                              onChange={onPostChange} value={props.newPostText} />
                 </div>
                 <div>
                     <button className={s.addButton} onClick={onAddPost}>Add post</button>
