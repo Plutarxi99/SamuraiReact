@@ -2,7 +2,7 @@ import {Component} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getAuthUserProfile, getUserProfile} from "../../redux/profile_reducer";
-import withRouter from "./withRouter";
+import withRouter from "../common/hoc/withRouter";
 
 class ProfileContainer extends Component {
     loadUser(userId) {
