@@ -6,13 +6,11 @@ import withRouter from "./withRouter";
 
 class ProfileContainer extends Component {
     loadUser(userId) {
-        debugger
         this.props.getUserProfile(userId);
     }
 
     componentDidMount() {
         const userId = this.props.router.params.userId || this.props.auth.userId;
-        debugger
         this.loadUser(userId);
     }
 

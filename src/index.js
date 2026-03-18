@@ -6,6 +6,18 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import {Provider} from "react-redux";
+import {backendAPI} from "./api/instanceBackend";
+import {logout} from "./redux/auth_reducer";
+
+backendAPI.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            store.dispatch(logout());
+        }
+        return Promise.reject(error);
+    }
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
