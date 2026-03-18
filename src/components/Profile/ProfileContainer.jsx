@@ -3,6 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getAuthUserProfile, getUserProfile} from "../../redux/profile_reducer";
 import withRouter from "../common/hoc/withRouter";
+import {compose} from "redux";
 
 class ProfileContainer extends Component {
     loadUser(userId) {
@@ -33,4 +34,7 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
 });
 
-export default connect(mapStateToProps, {getUserProfile, getAuthUserProfile})(withRouter(ProfileContainer));
+export default compose(
+    connect(mapStateToProps, {getUserProfile, getAuthUserProfile}),
+    withRouter
+)(ProfileContainer);
