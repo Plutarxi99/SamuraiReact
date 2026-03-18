@@ -1,6 +1,10 @@
+import {userAPI} from "../api/usersAPI";
+import {authAPI} from "../api/authAPI";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const GET_USER_PROFILE = "GET_USER_PROFILE";
 
 let initialState = {
     posts: [
@@ -30,6 +34,12 @@ const profileReducer = (state = initialState, action) => {
                 user: action.user,
             }
 
+        case GET_USER_PROFILE:
+            return {
+                ...state,
+                user: action.user,
+            }
+
         default:
             return state;
     }
@@ -44,5 +54,25 @@ export const setUserProfile = (user) => {
     return {type: SET_USER_PROFILE, user: user};
 }
 
+export const getUserProfile = (userId) => (dispatch) => {
+    userAPI.getUserById(userId)
+        .then((response) => {
+            console.log(response.data);
+            dispatch(setUserProfile(response.data));
+        })
+        .catch((error) => {
+            console.error("Ошибка запроса:", error);
+        });
+}
+
+export const getAuthUserProfile = () => (dispatch) => {
+    authAPI.me()
+        .then((response) => {
+            dispatch(setUserProfile(response.data));
+        })
+    .catch((error) => {
+        console.log("asd" + error);
+    })
+}
 
 export default profileReducer;

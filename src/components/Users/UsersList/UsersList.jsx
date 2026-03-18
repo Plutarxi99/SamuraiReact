@@ -1,6 +1,5 @@
 import s from './UsersList.module.css';
 import UsersItem from "../UsersItem/UsersItem";
-import {unfollowUserThunk} from "../../../redux/users_reducer";
 
 const buildPageRange = (current, total) => {
     const set = new Set();

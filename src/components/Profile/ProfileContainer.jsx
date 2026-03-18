@@ -1,39 +1,38 @@
-import { Component } from "react";
+import {Component} from "react";
 import Profile from "./Profile";
-import { connect } from "react-redux";
-import { setUserProfile } from "../../redux/profile_reducer";
+import {connect} from "react-redux";
+import {getAuthUserProfile, getUserProfile} from "../../redux/profile_reducer";
 import withRouter from "./withRouter";
-import {userAPI} from "../../api/usersAPI";
 
 class ProfileContainer extends Component {
     loadUser(userId) {
-        userAPI.getUserById(userId)
-            .then((response) => {
-                console.log(response.data);
-                this.props.setUserProfile(response.data);
-            })
-            .catch((error) => {
-                console.error("Ошибка запроса:", error);
-            });
+        debugger
+        this.props.getUserProfile(userId);
     }
 
     componentDidMount() {
-        this.loadUser(this.props.router.params.userId);
+        const userId = this.props.router.params.userId || this.props.auth.userId;
+        debugger
+        this.loadUser(userId);
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.router.params.userId !== this.props.router.params.userId) {
-            this.loadUser(this.props.router.params.userId);
+        const prevId = prevProps.router.params.userId || prevProps.auth.userId;
+        const currId = this.props.router.params.userId || this.props.auth.userId;
+        if (prevId !== currId) {
+            this.loadUser(currId);
         }
     }
 
+
     render() {
-        return <Profile {...this.props} user={this.props.user} />;
+        return <Profile {...this.props} user={this.props.user}/>;
     }
 }
 
 const mapStateToProps = (state) => ({
     user: state.profilePage.user,
+    auth: state.auth,
 });
 
-export default connect(mapStateToProps, { setUserProfile })(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {getUserProfile, getAuthUserProfile})(withRouter(ProfileContainer));
