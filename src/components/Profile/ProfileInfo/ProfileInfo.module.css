@@ -69,9 +69,50 @@
     line-height: 1.3;
 }
 
+/* Status (ProfileStatus component) */
+.statusWrapper {
+    display: inline-flex;
+    align-items: center;
+    min-width: 120px;
+    max-width: 100%;
+}
+
 .statusText {
     font-size: 0.875rem;
     color: #94a3b8;
+    line-height: 1.5;
+    cursor: pointer;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.statusText:hover {
+    color: #e2e8f0;
+    border-bottom-color: #64748b;
+}
+
+.statusInput {
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    line-height: 1.5;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #6366f1;
+    border-radius: 0;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    caret-color: #6366f1;
+    transition: border-color 0.2s ease;
+}
+
+.statusInput::placeholder {
+    color: #64748b;
+}
+
+.statusInput:focus {
+    border-bottom-color: #818cf8;
 }
 
 .location {

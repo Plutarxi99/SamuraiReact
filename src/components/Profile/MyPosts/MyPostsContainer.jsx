@@ -11,7 +11,8 @@ import PostsAPIComponent from "./PostsAPIComponent";
 let mapStateToProps = (state) => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        newPostText: state.profilePage.newPostText,
+        auth: state.auth,
     }
 }
 

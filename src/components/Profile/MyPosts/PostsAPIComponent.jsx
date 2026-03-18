@@ -4,7 +4,7 @@ import withRouter from "../../common/hoc/withRouter";
 
 class MyPostsAPIComponent extends Component {
     componentDidMount() {
-        this.props.getPostsByUser(this.props.router.params.userId);
+        this.props.getPostsByUser(this.props.router.params.userId || this.props.auth.userId);
     }
 
     render() {

@@ -1,5 +1,6 @@
 import s from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.user) return <Preloader />;
@@ -23,7 +24,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={s.userMeta}>
                     <span className={s.fullName}>{props.user.full_name}</span>
-                    <span className={s.statusText}>{props.user.status_text}</span>
+                    <ProfileStatus user={props.user} updateStatus={props.updateStatus} />
                     <span className={s.location}>
                         {props.user.location?.city}, {props.user.location?.country}
                     </span>

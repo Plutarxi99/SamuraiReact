@@ -7,6 +7,7 @@ const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const GET_USER_PROFILE = "GET_USER_PROFILE";
 const GET_POSTS_BY_USER = "GET_POSTS_BY_USER";
+const UPDATE_STATUS = "UPDATE_STATUS";
 
 let initialState = {
     posts: [ ],
@@ -42,6 +43,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: action.posts,
             }
+        case UPDATE_STATUS:
+            return {
+                ...state,
+                user: {...state.user, status_text: action.status_text},
+            }
 
         default:
             return state;
@@ -59,6 +65,10 @@ export const setUserProfile = (user) => {
 
 export const getPostsBuUser = (posts) => {
     return {type: GET_POSTS_BY_USER, posts};
+}
+
+export const updateStatusActionCreator = (status_text) => {
+    return {type: UPDATE_STATUS, status_text};
 }
 
 export const getUserProfile = (userId) => (dispatch) => {
@@ -102,6 +112,13 @@ export const createPost = (content) => (dispatch) => {
     .catch((error) => {
         console.error("export const getUsersPosts" + error);
     })
+}
+
+export const updateStatus = (statusText) => (dispatch) => {
+    return userAPI.updateStatus(statusText)
+        .then((response) => {
+            dispatch(updateStatusActionCreator(response.data.status_text));
+        })
 }
 
 export default profileReducer;

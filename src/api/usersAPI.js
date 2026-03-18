@@ -12,5 +12,8 @@ export const userAPI = {
     },
     getUserById(userId) {
         return backendAPI.get(`/users/${userId}`)
+    },
+    updateStatus(status_text) {
+        return backendAPI.patch(`/users/profile`, {'status_text': status_text})
     }
 }
